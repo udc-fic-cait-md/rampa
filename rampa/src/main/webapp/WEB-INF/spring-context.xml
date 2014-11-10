@@ -13,5 +13,10 @@
 		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/properties/messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 
 </beans>
