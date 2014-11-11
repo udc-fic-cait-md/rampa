@@ -13,10 +13,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metodologias.rampa.model.Socio;
 
+/**
+ * The Class SociosController.
+ */
 @Controller
 @RequestMapping(value = "/socios")
 public class SociosController {
 
+    /**
+     * Cargar listado socios.
+     *
+     * @return the model and view
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView cargarListadoSocios() {
 
@@ -25,6 +33,13 @@ public class SociosController {
         return modelo;
     }
 
+    /**
+     * Cargar alta socio.
+     *
+     * @param model
+     *            the model
+     * @return the model and view
+     */
     @RequestMapping(value = "/alta", method = RequestMethod.GET)
     public ModelAndView cargarAltaSocio(final Model model) {
         final ModelAndView modelo = new ModelAndView("socios/alta_socio");
@@ -32,6 +47,13 @@ public class SociosController {
         return modelo;
     }
 
+    /**
+     * Cargar perfil socio.
+     *
+     * @param idSocio
+     *            the id socio
+     * @return the model and view
+     */
     @RequestMapping(value = "/perfil/{idSocio}", method = RequestMethod.GET)
     public ModelAndView cargarPerfilSocio(@PathVariable("idSocio") final Integer idSocio) {
 
@@ -42,6 +64,17 @@ public class SociosController {
         return modelo;
     }
 
+    /**
+     * Alta socio.
+     *
+     * @param nuevoSocio
+     *            the nuevo socio
+     * @param result
+     *            the result
+     * @param model
+     *            the model
+     * @return the model and view
+     */
     @RequestMapping(value = "/darAltaSocio", method = RequestMethod.POST)
     public ModelAndView altaSocio(@Valid @ModelAttribute("nuevoSocio") final Socio nuevoSocio,
             final BindingResult result, final Model model) {

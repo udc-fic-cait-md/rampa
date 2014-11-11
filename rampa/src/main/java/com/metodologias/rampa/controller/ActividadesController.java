@@ -13,10 +13,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metodologias.rampa.model.Actividad;
 
+/**
+ * The Class ActividadesController.
+ */
 @Controller
 @RequestMapping(value = "/actividades")
 public class ActividadesController {
 
+    /**
+     * Cargar listado actividades.
+     *
+     * @return the model and view
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView cargarListadoActividades() {
 
@@ -25,6 +33,13 @@ public class ActividadesController {
         return modelo;
     }
 
+    /**
+     * Cargar alta actividad.
+     *
+     * @param model
+     *            the model
+     * @return the model and view
+     */
     @RequestMapping(value = "/alta", method = RequestMethod.GET)
     public ModelAndView cargarAltaActividad(final Model model) {
 
@@ -33,6 +48,17 @@ public class ActividadesController {
         return modelo;
     }
 
+    /**
+     * Alta actividad.
+     *
+     * @param nuevaActividad
+     *            the nueva actividad
+     * @param result
+     *            the result
+     * @param model
+     *            the model
+     * @return the model and view
+     */
     @RequestMapping(value = "/darAltaActividad", method = RequestMethod.POST)
     public ModelAndView altaActividad(@Valid @ModelAttribute("nuevaActividad") final Actividad nuevaActividad,
             final BindingResult result, final Model model) {
@@ -44,6 +70,13 @@ public class ActividadesController {
         return modelo;
     }
 
+    /**
+     * Cargar perfil actividad.
+     *
+     * @param idSocio
+     *            the id socio
+     * @return the model and view
+     */
     @RequestMapping(value = "/actividad/{idActividad}", method = RequestMethod.GET)
     public ModelAndView cargarPerfilActividad(@PathVariable("idActividad") final Integer idSocio) {
 
@@ -54,6 +87,11 @@ public class ActividadesController {
         return modelo;
     }
 
+    /**
+     * Cargar alta inscripcion.
+     *
+     * @return the model and view
+     */
     @RequestMapping(value = "/actividad/{idActividad}/inscripciones/alta", method = RequestMethod.GET)
     public ModelAndView cargarAltaInscripcion() {
 
@@ -62,6 +100,13 @@ public class ActividadesController {
         return modelo;
     }
 
+    /**
+     * Cargar inscripciones actividad.
+     *
+     * @param idSocio
+     *            the id socio
+     * @return the model and view
+     */
     @RequestMapping(value = "/actividad/{idActividad}/inscripciones", method = RequestMethod.GET)
     public ModelAndView cargarInscripcionesActividad(@PathVariable("idActividad") final Integer idSocio) {
 
