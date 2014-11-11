@@ -19,13 +19,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     </property>
  
     <property name="annotatedClasses">
-	<list>
-		<value>com.metodoloxias.rampa.model.Actividad</value>
-		<value>com.metodoloxias.rampa.model.Alumno</value>
-		<value>com.metodoloxias.rampa.model.Inscripcion</value>
-		<value>com.metodoloxias.rampa.model.Socio</value>
-	</list>
+		<list>
+			<value>com.metodologias.rampa.model.Actividad</value>
+			<value>com.metodologias.rampa.model.Alumno</value>
+			<value>com.metodologias.rampa.model.Inscripcion</value>
+			<value>com.metodologias.rampa.model.Socio</value>
+		</list>
     </property>
  
     </bean>
+
 </beans>
