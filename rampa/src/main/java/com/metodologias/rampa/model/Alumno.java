@@ -1,5 +1,6 @@
 package com.metodologias.rampa.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,10 @@ import javax.persistence.OneToMany;
  * The Class Alumno.
  */
 @Entity
-public class Alumno {
+public class Alumno implements Serializable {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -9187835744874271989L;
 
     /** The id. */
     @Id
@@ -56,7 +60,7 @@ public class Alumno {
      * @return the inscripciones
      */
     public List<Inscripcion> getInscripciones() {
-        return inscripciones;
+        return this.inscripciones;
     }
 
     /**
@@ -75,7 +79,7 @@ public class Alumno {
      * @return the socio
      */
     public Socio getSocio() {
-        return socio;
+        return this.socio;
     }
 
     /**
@@ -94,7 +98,7 @@ public class Alumno {
      * @return the id
      */
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -113,7 +117,7 @@ public class Alumno {
      * @return the nombre
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -132,7 +136,7 @@ public class Alumno {
      * @return the apellido1
      */
     public String getApellido1() {
-        return apellido1;
+        return this.apellido1;
     }
 
     /**
@@ -151,7 +155,7 @@ public class Alumno {
      * @return the apellido2
      */
     public String getApellido2() {
-        return apellido2;
+        return this.apellido2;
     }
 
     /**
@@ -170,7 +174,7 @@ public class Alumno {
      * @return the fecha nacimiento
      */
     public Date getFechaNacimiento() {
-        return fechaNacimiento;
+        return this.fechaNacimiento;
     }
 
     /**
@@ -189,7 +193,7 @@ public class Alumno {
      * @return the curso
      */
     public String getCurso() {
-        return curso;
+        return this.curso;
     }
 
     /**
@@ -208,7 +212,7 @@ public class Alumno {
      * @return the observaciones
      */
     public String getObservaciones() {
-        return observaciones;
+        return this.observaciones;
     }
 
     /**

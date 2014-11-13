@@ -1,24 +1,33 @@
 package com.metodologias.rampa.repository.impl;
 
-import org.springframework.dao.support.DataAccessUtils;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.repository.ActividadRepository;
-import com.metodologias.rampa.util.CustomHibernateDaoSupport;
 
 /**
  * The Class ActividadRepositoryImpl.
  */
 @Repository("actividadRepository")
-public class ActividadRepositoryImpl extends CustomHibernateDaoSupport implements ActividadRepository {
+@Transactional
+public class ActividadRepositoryImpl implements ActividadRepository {
+
+    /** The session factory. */
+    @Autowired(required = false)
+    private SessionFactory sessionFactory;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void save(final Actividad actividad) {
-        getHibernateTemplate().save(actividad);
+        this.sessionFactory.getCurrentSession().save(actividad);
     }
 
     /**
@@ -26,7 +35,7 @@ public class ActividadRepositoryImpl extends CustomHibernateDaoSupport implement
      */
     @Override
     public void update(final Actividad actividad) {
-        getHibernateTemplate().update(actividad);
+        this.sessionFactory.getCurrentSession().update(actividad);
     }
 
     /**
@@ -34,7 +43,7 @@ public class ActividadRepositoryImpl extends CustomHibernateDaoSupport implement
      */
     @Override
     public void delete(final Actividad actividad) {
-        getHibernateTemplate().delete(actividad);
+        this.sessionFactory.getCurrentSession().delete(actividad);
     }
 
     /**
@@ -42,9 +51,10 @@ public class ActividadRepositoryImpl extends CustomHibernateDaoSupport implement
      */
     @Override
     public Actividad findByCodigoActividad(final String codigoActividad) {
-        final Actividad actividad = (Actividad) DataAccessUtils.uniqueResult(getHibernateTemplate().find(
-                        "from Actividad where codigo=?", codigoActividad));
-        return actividad;
+        final Query query = this.sessionFactory.getCurrentSession().createQuery("from Actividad where codigo=:codigo");
+        query.setParameter("codigo", codigoActividad);
+        final List<Actividad> list = query.list();
+        return list != null ? list.get(0) : null;
     }
 
 }

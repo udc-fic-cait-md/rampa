@@ -6,22 +6,28 @@ import java.util.GregorianCalendar;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.metodologias.rampa.model.Alumno;
-import com.metodologias.rampa.repository.impl.AlumnoRepositoryImpl;
+import com.metodologias.rampa.service.AlumnoService;
 
 /**
  * The Class AlumnoTest.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/resources/spring/config/BeanLocations.xml")
 public class AlumnoTest {
 
+    /** The app context. */
     private final ApplicationContext appContext = new ClassPathXmlApplicationContext(
             "file:src/main/resources/spring/config/BeanLocations.xml");
 
-    private final AlumnoRepositoryImpl alumnoRepository = (AlumnoRepositoryImpl) this.appContext
-            .getBean("alumnoRepository");
+    /** The alumno service. */
+    private final AlumnoService alumnoService = (AlumnoService) this.appContext.getBean("alumnoService");
 
     /** The default timeout. */
     private static final int DEFAULT_TIMEOUT = 1000;
@@ -55,7 +61,7 @@ public class AlumnoTest {
         this.alumno.setApellido2(APELLIDO2);
         this.alumno.setCurso(CURSO);
         this.alumno.setFechaNacimiento(FECHA_NACIMIENTO);
-        this.alumnoRepository.save(this.alumno);
+        this.alumnoService.save(this.alumno);
     }
 
     /**
@@ -63,7 +69,8 @@ public class AlumnoTest {
      */
     @After
     public void eliminarAlumno() {
-        this.alumnoRepository.delete(this.alumno);
+        this.alumnoService.delete(this.alumno);
         this.alumno = null;
     }
+
 }

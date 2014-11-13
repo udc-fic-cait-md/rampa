@@ -1,5 +1,6 @@
 package com.metodologias.rampa.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,7 +13,10 @@ import javax.persistence.OneToMany;
  * The Class Socio.
  */
 @Entity
-public class Socio {
+public class Socio implements Serializable {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = -5550227039413892663L;
 
     /** The id. */
     @Id

@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `actividad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `actividad` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE` varchar(45) DEFAULT NULL,
   `CODIGO` varchar(10) DEFAULT NULL,
   `CUOTA` double DEFAULT NULL,
@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `alumno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `alumno` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE` varchar(45) DEFAULT NULL,
   `APELLIDO1` varchar(45) DEFAULT NULL,
   `APELLIDO2` varchar(45) DEFAULT NULL,
@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `inscripcion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `inscripcion` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `FECHAALTA` date DEFAULT NULL,
   `FECHABAJA` date DEFAULT NULL,
   `PAGOALDIA` binary(1) DEFAULT NULL,
@@ -116,7 +116,7 @@ DROP TABLE IF EXISTS `socio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `socio` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NUMERO` int(11) DEFAULT NULL,
   `NOMBRE` varchar(45) DEFAULT NULL,
   `APELLIDO1` varchar(45) DEFAULT NULL,

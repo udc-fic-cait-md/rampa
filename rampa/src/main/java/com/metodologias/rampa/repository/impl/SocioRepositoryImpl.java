@@ -1,24 +1,33 @@
 package com.metodologias.rampa.repository.impl;
 
-import org.springframework.dao.support.DataAccessUtils;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metodologias.rampa.model.Socio;
 import com.metodologias.rampa.repository.SocioRepository;
-import com.metodologias.rampa.util.CustomHibernateDaoSupport;
 
 /**
  * The Class SocioRepositoryImpl.
  */
 @Repository("socioRepository")
-public class SocioRepositoryImpl extends CustomHibernateDaoSupport implements SocioRepository {
+@Transactional
+public class SocioRepositoryImpl implements SocioRepository {
+
+    /** The session factory. */
+    @Autowired(required = false)
+    private SessionFactory sessionFactory;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void save(final Socio socio) {
-        getHibernateTemplate().save(socio);
+        this.sessionFactory.getCurrentSession().save(socio);
     }
 
     /**
@@ -26,7 +35,7 @@ public class SocioRepositoryImpl extends CustomHibernateDaoSupport implements So
      */
     @Override
     public void update(final Socio socio) {
-        getHibernateTemplate().update(socio);
+        this.sessionFactory.getCurrentSession().update(socio);
     }
 
     /**
@@ -34,7 +43,7 @@ public class SocioRepositoryImpl extends CustomHibernateDaoSupport implements So
      */
     @Override
     public void delete(final Socio socio) {
-        getHibernateTemplate().delete(socio);
+        this.sessionFactory.getCurrentSession().delete(socio);
     }
 
     /**
@@ -42,9 +51,9 @@ public class SocioRepositoryImpl extends CustomHibernateDaoSupport implements So
      */
     @Override
     public Socio findByNumero(final Long numeroSocio) {
-        final Socio socio = (Socio) DataAccessUtils.uniqueResult(getHibernateTemplate().find(
-                "from Socio where numero=?", numeroSocio));
-        return socio;
+        final Query query = this.sessionFactory.getCurrentSession().createQuery("from Socio where numero=:numero");
+        query.setParameter("numero", numeroSocio);
+        final List<Socio> list = query.list();
+        return list != null ? list.get(0) : null;
     }
-
 }

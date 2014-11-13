@@ -1,5 +1,6 @@
 package com.metodologias.rampa.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,10 @@ import javax.persistence.OneToMany;
  * The Class Actividad.
  */
 @Entity
-public class Actividad {
+public class Actividad implements Serializable {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 8150600729092773058L;
 
     /** The id. */
     @Id
@@ -48,7 +52,7 @@ public class Actividad {
      * @return the id
      */
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -67,7 +71,7 @@ public class Actividad {
      * @return the nombre
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
@@ -86,7 +90,7 @@ public class Actividad {
      * @return the codigo
      */
     public String getCodigo() {
-        return codigo;
+        return this.codigo;
     }
 
     /**
@@ -105,7 +109,7 @@ public class Actividad {
      * @return the cuota
      */
     public Double getCuota() {
-        return cuota;
+        return this.cuota;
     }
 
     /**
@@ -124,7 +128,7 @@ public class Actividad {
      * @return the descripcion
      */
     public String getDescripcion() {
-        return descripcion;
+        return this.descripcion;
     }
 
     /**
@@ -143,7 +147,7 @@ public class Actividad {
      * @return the fecha inicio
      */
     public Date getFechaInicio() {
-        return fechaInicio;
+        return this.fechaInicio;
     }
 
     /**
@@ -162,7 +166,7 @@ public class Actividad {
      * @return the fecha fin
      */
     public Date getFechaFin() {
-        return fechaFin;
+        return this.fechaFin;
     }
 
     /**
@@ -181,7 +185,7 @@ public class Actividad {
      * @return the inscripciones
      */
     public List<Inscripcion> getInscripciones() {
-        return inscripciones;
+        return this.inscripciones;
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.metodologias.rampa.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,7 +15,10 @@ import javax.persistence.ManyToOne;
  * The Class Inscripcion.
  */
 @Entity
-public class Inscripcion {
+public class Inscripcion implements Serializable {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 8625675034320744919L;
 
     /** The id. */
     @Id
@@ -46,7 +50,7 @@ public class Inscripcion {
      * @return the id
      */
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -65,7 +69,7 @@ public class Inscripcion {
      * @return the fecha alta
      */
     public Date getFechaAlta() {
-        return fechaAlta;
+        return this.fechaAlta;
     }
 
     /**
@@ -84,7 +88,7 @@ public class Inscripcion {
      * @return the fecha baja
      */
     public Date getFechaBaja() {
-        return fechaBaja;
+        return this.fechaBaja;
     }
 
     /**
@@ -103,7 +107,7 @@ public class Inscripcion {
      * @return true, if is pago al dia
      */
     public boolean isPagoAlDia() {
-        return pagoAlDia;
+        return this.pagoAlDia;
     }
 
     /**
@@ -122,7 +126,7 @@ public class Inscripcion {
      * @return the alumno
      */
     public Alumno getAlumno() {
-        return alumno;
+        return this.alumno;
     }
 
     /**
@@ -141,7 +145,7 @@ public class Inscripcion {
      * @return the actividad
      */
     public Actividad getActividad() {
-        return actividad;
+        return this.actividad;
     }
 
     /**
@@ -150,7 +154,7 @@ public class Inscripcion {
      * @param actividad
      *            the new actividad
      */
-    public void setActividad(Actividad actividad) {
+    public void setActividad(final Actividad actividad) {
         this.actividad = actividad;
     }
 }

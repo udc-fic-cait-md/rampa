@@ -12,8 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.metodologias.rampa.model.Socio;
-import com.metodologias.rampa.repository.SocioRepository;
-import com.metodologias.rampa.repository.impl.SocioRepositoryImpl;
+import com.metodologias.rampa.service.SocioService;
 
 /**
  * The Class SocioTest.
@@ -22,14 +21,15 @@ import com.metodologias.rampa.repository.impl.SocioRepositoryImpl;
 @ContextConfiguration("file:src/main/resources/spring/config/BeanLocations.xml")
 public class SocioTest extends TestCase {
 
+    /** The app context. */
     private final ApplicationContext appContext = new ClassPathXmlApplicationContext(
             "file:src/main/resources/spring/config/BeanLocations.xml");
 
-    private final SocioRepositoryImpl socioRepository = (SocioRepositoryImpl) this.appContext
-            .getBean("socioRepository");
+    /** The socio service. */
+    private final SocioService socioService = (SocioService) this.appContext.getBean("socioService");
 
     /** The default timeout. */
-    private static final int DEFAULT_TIMEOUT = 1000000;
+    private static final int DEFAULT_TIMEOUT = 1000;
 
     /** The nombre. */
     private static final String NOMBRE = "Elías";
@@ -68,7 +68,7 @@ public class SocioTest extends TestCase {
         this.socio.setDireccion(DIRECCION);
         this.socio.setTelefono(TELEFONO);
         this.socio.setNumero(NUMERO);
-        this.socioRepository.save(this.socio);
+        this.socioService.save(this.socio);
     }
 
     /**
@@ -76,7 +76,7 @@ public class SocioTest extends TestCase {
      */
     @After
     public void eliminarSocio() {
-        this.socioRepository.delete(this.socio);
+        this.socioService.delete(this.socio);
         this.socio = null;
     }
 
@@ -85,8 +85,7 @@ public class SocioTest extends TestCase {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testNumero() {
-        final SocioRepository repositorio = new SocioRepositoryImpl();
-        final Socio socioBD = repositorio.findByNumero(NUMERO);
+        final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(NUMERO, socioBD.getNumero());
     }
 
@@ -95,8 +94,7 @@ public class SocioTest extends TestCase {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testNombre() {
-        final SocioRepository repositorio = new SocioRepositoryImpl();
-        final Socio socioBD = repositorio.findByNumero(NUMERO);
+        final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getNumero(), socioBD.getNumero());
     }
 
@@ -105,8 +103,7 @@ public class SocioTest extends TestCase {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testApellido1() {
-        final SocioRepository repositorio = new SocioRepositoryImpl();
-        final Socio socioBD = repositorio.findByNumero(NUMERO);
+        final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getApellido1(), socioBD.getApellido1());
     }
 
@@ -115,8 +112,7 @@ public class SocioTest extends TestCase {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testApellido2() {
-        final SocioRepository repositorio = new SocioRepositoryImpl();
-        final Socio socioBD = repositorio.findByNumero(NUMERO);
+        final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getApellido2(), socioBD.getApellido2());
     }
 
@@ -125,18 +121,8 @@ public class SocioTest extends TestCase {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testEmail() {
-        final SocioRepository repositorio = new SocioRepositoryImpl();
-        final Socio socioBD = repositorio.findByNumero(NUMERO);
+        final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getEmail(), socioBD.getEmail());
-    }
-
-    /**
-     * Test error inicializacion.
-     */
-    @Test(timeout = DEFAULT_TIMEOUT, expected = NullPointerException.class)
-    public void testErrorInicializacion() {
-        this.socio = null;
-        assertEquals(NUMERO, this.socio.getNumero());
     }
 
 }

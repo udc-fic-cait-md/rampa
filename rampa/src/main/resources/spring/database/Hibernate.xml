@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:tx="http://www.springframework.org/schema/tx"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
  
-<!-- Hibernate session factory -->
-<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
- 
-    <property name="dataSource">
-      <ref bean="dataSource"/>
-    </property>
- 
-    <property name="hibernateProperties">
-       <props>
-         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-         <prop key="hibernate.show_sql">true</prop>
-       </props>
-    </property>
- 
-    <property name="annotatedClasses">
-		<list>
-			<value>com.metodologias.rampa.model.Actividad</value>
-			<value>com.metodologias.rampa.model.Alumno</value>
-			<value>com.metodologias.rampa.model.Inscripcion</value>
-			<value>com.metodologias.rampa.model.Socio</value>
-		</list>
-    </property>
- 
+    <!-- Hibernate session factory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+
+        <property name="packagesToScan" value="com.metodologias.rampa.model"/>
+
     </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven />
 
 </beans>
