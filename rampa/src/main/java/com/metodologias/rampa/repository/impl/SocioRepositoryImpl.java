@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.metodologias.rampa.model.Socio;
 import com.metodologias.rampa.repository.SocioRepository;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class SocioRepositoryImpl.
  */
-@Repository("socioRepository")
+@Repository(CommonNaming.BEAN_REPOSITORIO_SOCIO)
 @Transactional
 public class SocioRepositoryImpl implements SocioRepository {
 
@@ -54,6 +55,6 @@ public class SocioRepositoryImpl implements SocioRepository {
         final Query query = this.sessionFactory.getCurrentSession().createQuery("from Socio where numero=:numero");
         query.setParameter("numero", numeroSocio);
         final List<Socio> list = query.list();
-        return list != null ? list.get(0) : null;
+        return list != null ? list.get(CommonNaming.POSICION_INICIAL) : null;
     }
 }

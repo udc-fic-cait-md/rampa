@@ -31,4 +31,13 @@ public interface InscripcionService {
      */
     void delete(Inscripcion inscripcion);
 
+    /**
+     * Find by id.
+     *
+     * @param id
+     *            the id
+     * @return the inscripcion
+     */
+    Inscripcion findById(Long id);
+
 }

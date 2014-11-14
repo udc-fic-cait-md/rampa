@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.metodologias.rampa.util.naming.CommonNaming;
+
 /**
  * The Class Alumno.
  */
@@ -51,7 +53,7 @@ public class Alumno implements Serializable {
     private Socio socio;
 
     /** The inscripciones. */
-    @OneToMany(mappedBy = "alumno")
+    @OneToMany(mappedBy = CommonNaming.ALUMNO)
     private List<Inscripcion> inscripciones;
 
     /**

@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import com.metodologias.rampa.model.Inscripcion;
 import com.metodologias.rampa.repository.InscripcionRepository;
 import com.metodologias.rampa.service.InscripcionService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class InscripcionServiceImpl.
  */
-@Service("inscripcionService")
+@Service(CommonNaming.BEAN_SERVICIO_INSCRIPCION)
 public class InscripcionServiceImpl implements InscripcionService {
 
     /** The inscripcion repository. */
@@ -39,6 +40,14 @@ public class InscripcionServiceImpl implements InscripcionService {
     @Override
     public void delete(final Inscripcion inscripcion) {
         this.inscripcionRepository.delete(inscripcion);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Inscripcion findById(final Long id) {
+        return this.inscripcionRepository.findById(id);
     }
 
 }

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.metodologias.rampa.util.naming.CommonNaming;
+
 /**
  * The Class Socio.
  */
@@ -45,7 +47,7 @@ public class Socio implements Serializable {
     private String email;
 
     /** The alumnos. */
-    @OneToMany(mappedBy = "socio")
+    @OneToMany(mappedBy = CommonNaming.SOCIO)
     private List<Alumno> alumnos;
 
     /**

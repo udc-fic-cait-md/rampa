@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import com.metodologias.rampa.model.Socio;
 import com.metodologias.rampa.repository.SocioRepository;
 import com.metodologias.rampa.service.SocioService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class SocioServiceImpl.
  */
-@Service("socioService")
+@Service(CommonNaming.BEAN_SERVICIO_SOCIO)
 public class SocioServiceImpl implements SocioService {
 
     /** The socio repository. */

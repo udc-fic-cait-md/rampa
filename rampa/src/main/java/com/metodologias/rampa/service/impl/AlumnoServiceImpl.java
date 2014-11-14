@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import com.metodologias.rampa.model.Alumno;
 import com.metodologias.rampa.repository.AlumnoRepository;
 import com.metodologias.rampa.service.AlumnoService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class AlumnoServiceImpl.
  */
-@Service("alumnoService")
+@Service(CommonNaming.BEAN_SERVICIO_ALUMNO)
 public class AlumnoServiceImpl implements AlumnoService {
 
     /** The alumno repository. */

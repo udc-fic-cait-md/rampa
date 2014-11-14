@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.metodologias.rampa.model.Alumno;
 import com.metodologias.rampa.repository.AlumnoRepository;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class AlumnoRepositoryImpl.
  */
-@Repository("alumnoRepository")
+@Repository(CommonNaming.BEAN_REPOSITORIO_ALUMNO)
 @Transactional
 public class AlumnoRepositoryImpl implements AlumnoRepository {
 
@@ -54,7 +55,7 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         final Query query = this.sessionFactory.getCurrentSession().createQuery("from Alumno where id=:id");
         query.setParameter("id", id);
         final List<Alumno> list = query.list();
-        return list != null ? list.get(0) : null;
+        return list != null ? list.get(CommonNaming.POSICION_INICIAL) : null;
     }
 
 }

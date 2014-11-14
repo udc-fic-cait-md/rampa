@@ -1,11 +1,14 @@
 package com.metodologias.rampa.test.model;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,23 +17,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.metodologias.rampa.model.Alumno;
 import com.metodologias.rampa.service.AlumnoService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class AlumnoTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/resources/spring/config/BeanLocations.xml")
+@ContextConfiguration(CommonNaming.ARCHIVO_BEANS)
 public class AlumnoTest {
 
     /** The app context. */
-    private final ApplicationContext appContext = new ClassPathXmlApplicationContext(
-            "file:src/main/resources/spring/config/BeanLocations.xml");
+    private final ApplicationContext appContext = new ClassPathXmlApplicationContext(CommonNaming.ARCHIVO_BEANS);
 
     /** The alumno service. */
-    private final AlumnoService alumnoService = (AlumnoService) this.appContext.getBean("alumnoService");
-
-    /** The default timeout. */
-    private static final int DEFAULT_TIMEOUT = 1000;
+    private final AlumnoService alumnoService = (AlumnoService) this.appContext
+            .getBean(CommonNaming.BEAN_SERVICIO_ALUMNO);
 
     /** The nombre. */
     private static final String NOMBRE = "Elias";
@@ -45,7 +46,7 @@ public class AlumnoTest {
     private static final String CURSO = "3ºA";
 
     /** The Constant FECHA_NACIMIENTO. */
-    private static final Date FECHA_NACIMIENTO = new GregorianCalendar(1987, Calendar.AUGUST, 9).getTime();
+    private static final Date FECHA_NACIMIENTO = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();
 
     /** The alumno. */
     private Alumno alumno;
@@ -73,4 +74,48 @@ public class AlumnoTest {
         this.alumno = null;
     }
 
+    /**
+     * Test nombre.
+     */
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
+    public void testNombre() {
+        final Alumno alumnoBD = this.alumnoService.findById(this.alumno.getId());
+        assertEquals(this.alumno.getNombre(), alumnoBD.getNombre());
+    }
+
+    /**
+     * Test apellido1.
+     */
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
+    public void testApellido1() {
+        final Alumno alumnoBD = this.alumnoService.findById(this.alumno.getId());
+        assertEquals(this.alumno.getApellido1(), alumnoBD.getApellido1());
+    }
+
+    /**
+     * Test apellido2.
+     */
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
+    public void testApellido2() {
+        final Alumno alumnoBD = this.alumnoService.findById(this.alumno.getId());
+        assertEquals(this.alumno.getApellido2(), alumnoBD.getApellido2());
+    }
+
+    /**
+     * Test curso.
+     */
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
+    public void testCurso() {
+        final Alumno alumnoBD = this.alumnoService.findById(this.alumno.getId());
+        assertEquals(this.alumno.getCurso(), alumnoBD.getCurso());
+    }
+
+    /**
+     * Test fecha nacimiento.
+     */
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
+    public void testFechaNacimiento() {
+        final Alumno alumnoBD = this.alumnoService.findById(this.alumno.getId());
+        assertEquals(this.alumno.getFechaNacimiento(), alumnoBD.getFechaNacimiento());
+    }
 }

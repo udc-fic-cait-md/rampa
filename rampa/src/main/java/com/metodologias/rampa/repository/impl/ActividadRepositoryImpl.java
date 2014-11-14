@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.repository.ActividadRepository;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class ActividadRepositoryImpl.
  */
-@Repository("actividadRepository")
+@Repository(CommonNaming.BEAN_REPOSITORIO_ACTIVIDAD)
 @Transactional
 public class ActividadRepositoryImpl implements ActividadRepository {
 
@@ -54,7 +55,7 @@ public class ActividadRepositoryImpl implements ActividadRepository {
         final Query query = this.sessionFactory.getCurrentSession().createQuery("from Actividad where codigo=:codigo");
         query.setParameter("codigo", codigoActividad);
         final List<Actividad> list = query.list();
-        return list != null ? list.get(0) : null;
+        return list != null ? list.get(CommonNaming.POSICION_INICIAL) : null;
     }
 
 }

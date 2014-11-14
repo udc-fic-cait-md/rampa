@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.repository.ActividadRepository;
 import com.metodologias.rampa.service.ActividadService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class ActividadServiceImpl.
  */
-@Service("actividadService")
+@Service(CommonNaming.BEAN_SERVICIO_ACTIVIDAD)
 public class ActividadServiceImpl implements ActividadService {
 
     /** The actividad repository. */

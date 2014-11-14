@@ -13,23 +13,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.metodologias.rampa.model.Socio;
 import com.metodologias.rampa.service.SocioService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class SocioTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/resources/spring/config/BeanLocations.xml")
+@ContextConfiguration(CommonNaming.ARCHIVO_BEANS)
 public class SocioTest extends TestCase {
 
     /** The app context. */
-    private final ApplicationContext appContext = new ClassPathXmlApplicationContext(
-            "file:src/main/resources/spring/config/BeanLocations.xml");
+    private final ApplicationContext appContext = new ClassPathXmlApplicationContext(CommonNaming.ARCHIVO_BEANS);
 
     /** The socio service. */
-    private final SocioService socioService = (SocioService) this.appContext.getBean("socioService");
-
-    /** The default timeout. */
-    private static final int DEFAULT_TIMEOUT = 1000;
+    private final SocioService socioService = (SocioService) this.appContext.getBean(CommonNaming.BEAN_SERVICIO_SOCIO);
 
     /** The nombre. */
     private static final String NOMBRE = "Elías";
@@ -83,25 +80,25 @@ public class SocioTest extends TestCase {
     /**
      * Test numero.
      */
-    @Test(timeout = DEFAULT_TIMEOUT)
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
     public void testNumero() {
-        final Socio socioBD = this.socioService.findByNumero(NUMERO);
-        assertEquals(NUMERO, socioBD.getNumero());
-    }
-
-    /**
-     * Test nombre.
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void testNombre() {
         final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getNumero(), socioBD.getNumero());
     }
 
     /**
+     * Test nombre.
+     */
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
+    public void testNombre() {
+        final Socio socioBD = this.socioService.findByNumero(NUMERO);
+        assertEquals(this.socio.getNombre(), socioBD.getNombre());
+    }
+
+    /**
      * Test apellido1.
      */
-    @Test(timeout = DEFAULT_TIMEOUT)
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
     public void testApellido1() {
         final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getApellido1(), socioBD.getApellido1());
@@ -110,7 +107,7 @@ public class SocioTest extends TestCase {
     /**
      * Test apellido2.
      */
-    @Test(timeout = DEFAULT_TIMEOUT)
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
     public void testApellido2() {
         final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getApellido2(), socioBD.getApellido2());
@@ -119,7 +116,7 @@ public class SocioTest extends TestCase {
     /**
      * Test email.
      */
-    @Test(timeout = DEFAULT_TIMEOUT)
+    @Test(timeout = CommonNaming.DEFAULT_TIMEOUT)
     public void testEmail() {
         final Socio socioBD = this.socioService.findByNumero(NUMERO);
         assertEquals(this.socio.getEmail(), socioBD.getEmail());

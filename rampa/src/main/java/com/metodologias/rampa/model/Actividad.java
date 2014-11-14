@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.metodologias.rampa.util.naming.CommonNaming;
+
 /**
  * The Class Actividad.
  */
@@ -43,7 +45,7 @@ public class Actividad implements Serializable {
     private Date fechaFin;
 
     /** The inscripciones. */
-    @OneToMany(mappedBy = "actividad")
+    @OneToMany(mappedBy = CommonNaming.ACTIVIDAD)
     private List<Inscripcion> inscripciones;
 
     /**
