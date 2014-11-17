@@ -1,4 +1,6 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML>
 
@@ -11,7 +13,12 @@
 	<body>
 		<section>
 			<h2>RAMPA - Alta de socio</h2>
-			<f:form method="POST" modelAttribute="nuevoSocio" action="/rampa/socios/darAltaSocio">
+	
+			<c:if test="${not empty infoMsg}">
+				<s:message code="${infoMsg}" />
+			</c:if>
+
+		<f:form method="POST" modelAttribute="nuevoSocio" action="/rampa/socios/darAltaSocio">
 				<table>
 					<tr>
 						<td>Nombre:</td>

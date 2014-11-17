@@ -20,10 +20,19 @@ import com.metodologias.rampa.util.naming.CommonNaming;
 public class SocioRepositoryImpl implements SocioRepository {
 
     /** The session factory. */
-    @Autowired(required = false)
+    @Autowired
     private SessionFactory sessionFactory;
 
-    /**
+    
+    public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	/**
      * {@inheritDoc}
      */
     @Override

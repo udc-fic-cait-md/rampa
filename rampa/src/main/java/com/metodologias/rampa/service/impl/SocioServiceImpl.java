@@ -18,7 +18,16 @@ public class SocioServiceImpl implements SocioService {
     @Autowired
     private SocioRepository socioRepository;
 
-    /**
+    
+    public SocioRepository getSocioRepository() {
+		return socioRepository;
+	}
+
+	public void setSocioRepository(SocioRepository socioRepository) {
+		this.socioRepository = socioRepository;
+	}
+
+	/**
      * {@inheritDoc}
      */
     @Override
