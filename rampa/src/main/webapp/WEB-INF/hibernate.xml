@@ -21,14 +21,12 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
             </props>
         </property>
 
-        <property name="packagesToScan" value="com.metodologias.rampa.model"/>
+        <property name="packagesToScan" value="com.metodologias.rampa"/>
 
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
-    <tx:annotation-driven />
 
 </beans>

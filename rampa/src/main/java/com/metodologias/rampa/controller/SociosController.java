@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metodologias.rampa.model.Socio;
 import com.metodologias.rampa.service.SocioService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class SociosController.
@@ -26,28 +26,14 @@ import com.metodologias.rampa.service.SocioService;
 @RequestMapping(value = "/socios")
 public class SociosController {
 
-	@Autowired
-	SocioService socioService;
-	
-	public SocioService getSocioService() {
-		return socioService;
-	}
+    /** The socio service. */
+    @Autowired
+    private SocioService socioService;
 
-	public void setSocioService(SocioService socioService) {
-		this.socioService = socioService;
-	}
-	
-	@Autowired
-	MessageSource msgSource;
+    /** The msg source. */
+    @Autowired
+    private MessageSource msgSource;
 
-	public MessageSource getMsgSource() {
-		return msgSource;
-	}
-
-	public void setMsgSource(MessageSource msgSource) {
-		this.msgSource = msgSource;
-	}
-	
     /**
      * Cargar listado socios.
      *
@@ -104,13 +90,50 @@ public class SociosController {
     public ModelAndView altaSocio(@Valid @ModelAttribute("nuevoSocio") final Socio nuevoSocio,
             final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
-            getSocioService().save(nuevoSocio);
-            Locale locale = LocaleContextHolder.getLocale();
-            getMsgSource().getMessage("Socio dado de alta satisfactoriamente", null, locale);
-            model.addAttribute("infoMsg", "Socio dado de alta satisfactoriamente");
+            this.socioService.save(nuevoSocio);
+            model.addAttribute("infoMsg",
+                    this.msgSource.getMessage(CommonNaming.ALTA_CORRECTA_SOCIO, null, Locale.getDefault()));
         }
         final ModelAndView modelo = new ModelAndView("socios/alta_socio");
         return modelo;
+    }
+
+    /**
+     * Gets the socio service.
+     *
+     * @return the socio service
+     */
+    public SocioService getSocioService() {
+        return this.socioService;
+    }
+
+    /**
+     * Sets the socio service.
+     *
+     * @param socioService
+     *            the new socio service
+     */
+    public void setSocioService(final SocioService socioService) {
+        this.socioService = socioService;
+    }
+
+    /**
+     * Gets the msg source.
+     *
+     * @return the msg source
+     */
+    public MessageSource getMsgSource() {
+        return this.msgSource;
+    }
+
+    /**
+     * Sets the msg source.
+     *
+     * @param msgSource
+     *            the new msg source
+     */
+    public void setMsgSource(final MessageSource msgSource) {
+        this.msgSource = msgSource;
     }
 
 }

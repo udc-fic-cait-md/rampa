@@ -1,7 +1,11 @@
 package com.metodologias.rampa.controller;
 
+import java.util.Locale;
+
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.metodologias.rampa.model.Actividad;
+import com.metodologias.rampa.service.ActividadService;
+import com.metodologias.rampa.util.naming.CommonNaming;
 
 /**
  * The Class ActividadesController.
@@ -19,6 +25,14 @@ import com.metodologias.rampa.model.Actividad;
 @Controller
 @RequestMapping(value = "/actividades")
 public class ActividadesController {
+
+    /** The actividad service. */
+    @Autowired
+    private ActividadService actividadService;
+
+    /** The msg source. */
+    @Autowired
+    private MessageSource msgSource;
 
     /**
      * Cargar listado actividades.
@@ -63,8 +77,9 @@ public class ActividadesController {
     public ModelAndView altaActividad(@Valid @ModelAttribute("nuevaActividad") final Actividad nuevaActividad,
             final BindingResult result, final Model model) {
         if (!result.hasErrors()) {
-
-            model.addAttribute("infoMsg", "Actividad creada correctamente");
+            this.actividadService.save(nuevaActividad);
+            model.addAttribute("infoMsg",
+                    this.msgSource.getMessage(CommonNaming.ALTA_CORRECTA_ACTIVIDAD, null, Locale.getDefault()));
         }
         final ModelAndView modelo = new ModelAndView("actividades/alta_actividad");
         return modelo;

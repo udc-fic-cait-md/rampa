@@ -23,16 +23,7 @@ public class SocioRepositoryImpl implements SocioRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
-    
-    public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	/**
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -65,5 +56,24 @@ public class SocioRepositoryImpl implements SocioRepository {
         query.setParameter("numero", numeroSocio);
         final List<Socio> list = query.list();
         return list != null ? list.get(CommonNaming.POSICION_INICIAL) : null;
+    }
+
+    /**
+     * Gets the session factory.
+     *
+     * @return the session factory
+     */
+    public SessionFactory getSessionFactory() {
+        return this.sessionFactory;
+    }
+
+    /**
+     * Sets the session factory.
+     *
+     * @param sessionFactory
+     *            the new session factory
+     */
+    public void setSessionFactory(final SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }

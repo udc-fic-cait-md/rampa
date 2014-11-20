@@ -58,4 +58,22 @@ public class ActividadRepositoryImpl implements ActividadRepository {
         return list != null ? list.get(CommonNaming.POSICION_INICIAL) : null;
     }
 
+    /**
+     * Gets the session factory.
+     *
+     * @return the session factory
+     */
+    public SessionFactory getSessionFactory() {
+        return this.sessionFactory;
+    }
+
+    /**
+     * Sets the session factory.
+     *
+     * @param sessionFactory
+     *            the new session factory
+     */
+    public void setSessionFactory(final SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 }
