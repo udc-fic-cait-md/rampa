@@ -35,12 +35,12 @@ public class Inscripcion implements Serializable {
     private boolean pagoAlDia;
 
     /** The alumno. */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ALUMNO_ID")
     private Alumno alumno;
 
     /** The actividad. */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ACTIVIDAD_ID")
     private Actividad actividad;
 

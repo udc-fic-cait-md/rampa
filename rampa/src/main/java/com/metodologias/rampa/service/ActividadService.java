@@ -1,5 +1,7 @@
 package com.metodologias.rampa.service;
 
+import java.util.List;
+
 import com.metodologias.rampa.model.Actividad;
 
 /**
@@ -39,5 +41,12 @@ public interface ActividadService {
      * @return the actividad
      */
     Actividad findByCodigoActividad(final String codigoActividad);
+
+    /**
+     * Find all.
+     *
+     * @return the list
+     */
+    List<Actividad> findAll();
 
 }

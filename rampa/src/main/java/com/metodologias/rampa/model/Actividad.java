@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,7 +46,7 @@ public class Actividad implements Serializable {
     private Date fechaFin;
 
     /** The inscripciones. */
-    @OneToMany(mappedBy = CommonNaming.ACTIVIDAD)
+    @OneToMany(mappedBy = CommonNaming.ACTIVIDAD, fetch = FetchType.EAGER)
     private List<Inscripcion> inscripciones;
 
     /**

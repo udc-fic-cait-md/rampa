@@ -19,6 +19,9 @@ public final class CommonNaming {
     /** The Constant ALTA_CORRECTA_A. */
     public static final String ALTA_CORRECTA_ACTIVIDAD = "actividad.altaCorrecta";
 
+    /** The Constant ALTA_CORRECTA_ALUMNO. */
+    public static final String ALTA_CORRECTA_ALUMNO = "alumno.altaCorrecta";
+
     /** The Constant ALTA_CORRECTA_SOCIO. */
     public static final String ALTA_CORRECTA_SOCIO = "socio.altaCorrecta";
 

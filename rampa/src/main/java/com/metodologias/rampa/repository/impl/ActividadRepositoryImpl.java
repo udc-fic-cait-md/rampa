@@ -59,6 +59,16 @@ public class ActividadRepositoryImpl implements ActividadRepository {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Actividad> findAll() {
+        final Query query = this.sessionFactory.getCurrentSession().createQuery("from Actividad");
+        final List<Actividad> list = query.list();
+        return list;
+    }
+
+    /**
      * Gets the session factory.
      *
      * @return the session factory
@@ -76,4 +86,5 @@ public class ActividadRepositoryImpl implements ActividadRepository {
     public void setSessionFactory(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
 }

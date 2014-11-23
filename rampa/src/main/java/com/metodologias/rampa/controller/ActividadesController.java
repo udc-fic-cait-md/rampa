@@ -43,6 +43,7 @@ public class ActividadesController {
     public ModelAndView cargarListadoActividades() {
 
         final ModelAndView modelo = new ModelAndView("actividades/actividades");
+        modelo.addObject("listaActividades", this.actividadService.findAll());
 
         return modelo;
     }

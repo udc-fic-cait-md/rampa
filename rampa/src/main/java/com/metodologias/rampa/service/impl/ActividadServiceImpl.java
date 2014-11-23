@@ -1,5 +1,7 @@
 package com.metodologias.rampa.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,14 @@ public class ActividadServiceImpl implements ActividadService {
     @Override
     public Actividad findByCodigoActividad(final String codigoActividad) {
         return this.actividadRepository.findByCodigoActividad(codigoActividad);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Actividad> findAll() {
+        return this.actividadRepository.findAll();
     }
 
 }
