@@ -10,6 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.metodologias.rampa.util.naming.CommonNaming;
 
@@ -149,6 +154,8 @@ public class Actividad implements Serializable {
      *
      * @return the fecha inicio
      */
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
     public Date getFechaInicio() {
         return this.fechaInicio;
     }
@@ -159,6 +166,8 @@ public class Actividad implements Serializable {
      * @param fechaInicio
      *            the new fecha inicio
      */
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
     public void setFechaInicio(final Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
@@ -168,6 +177,8 @@ public class Actividad implements Serializable {
      *
      * @return the fecha fin
      */
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
     public Date getFechaFin() {
         return this.fechaFin;
     }
@@ -178,6 +189,8 @@ public class Actividad implements Serializable {
      * @param fechaFin
      *            the new fecha fin
      */
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE, pattern="yyyy-MM-dd")
     public void setFechaFin(final Date fechaFin) {
         this.fechaFin = fechaFin;
     }

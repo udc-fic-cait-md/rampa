@@ -1,7 +1,12 @@
 package com.metodologias.rampa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.metodologias.rampa.controller.validator.ActividadValidator;
 import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.service.ActividadService;
 import com.metodologias.rampa.util.naming.CommonNaming;
@@ -34,6 +40,9 @@ public class ActividadesController {
     @Autowired
     private MessageSource msgSource;
 
+    @Autowired
+    ActividadValidator actividadValidator;
+    
     /**
      * Cargar listado actividades.
      *
@@ -75,8 +84,35 @@ public class ActividadesController {
      * @return the model and view
      */
     @RequestMapping(value = "/darAltaActividad", method = RequestMethod.POST)
-    public ModelAndView altaActividad(@Valid @ModelAttribute("nuevaActividad") final Actividad nuevaActividad,
+    public ModelAndView altaActividad(HttpServletRequest request,
+			HttpServletResponse response,@Valid @ModelAttribute("nuevaActividad") final Actividad nuevaActividad,
             final BindingResult result, final Model model) {
+    	
+    	//Sección de código provisional para el tratamiento de fechas de la actividad
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+		Date fecha = null;
+		try {
+			if(request.getParameter("fechadeInicio")!= null && !"".equals(request.getParameter("fechadeInicio"))){
+				fecha = formatoDelTexto.parse(request.getParameter("fechadeInicio"));
+				nuevaActividad.setFechaInicio(fecha);
+				fecha = null;
+			}
+			if(request.getParameter("fechadeFin")!= null && !"".equals(request.getParameter("fechadeFin"))){
+				
+				fecha = formatoDelTexto.parse(request.getParameter("fechadeFin"));
+				nuevaActividad.setFechaFin(fecha);
+			}
+		
+		} catch (ParseException ex) {
+		
+		ex.printStackTrace();
+		
+		}
+		
+		//Validamos la actividad
+		actividadValidator.validate(nuevaActividad, result);
+		
+		
         if (!result.hasErrors()) {
             this.actividadService.save(nuevaActividad);
             model.addAttribute("infoMsg",
