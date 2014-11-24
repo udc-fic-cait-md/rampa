@@ -1,5 +1,8 @@
 package com.metodologias.rampa.repository;
 
+import java.util.List;
+
+import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.model.Alumno;
 
 /**
@@ -39,5 +42,7 @@ public interface AlumnoRepository {
      * @return the alumno
      */
     Alumno findById(Long id);
+
+	List<Alumno> findAll();
 
 }

@@ -1,5 +1,8 @@
 package com.metodologias.rampa.service;
 
+import java.util.List;
+
+import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.model.Alumno;
 
 /**
@@ -40,4 +43,10 @@ public interface AlumnoService {
      */
     Alumno findById(final Long id);
 
+    /**
+     * Find all.
+     *
+     * @return the list
+     */
+    List<Alumno> findAll();
 }

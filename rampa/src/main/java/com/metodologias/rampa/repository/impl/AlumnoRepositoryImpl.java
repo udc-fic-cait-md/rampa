@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.model.Alumno;
 import com.metodologias.rampa.repository.AlumnoRepository;
 import com.metodologias.rampa.util.naming.CommonNaming;
@@ -56,6 +57,16 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         query.setParameter("id", id);
         final List<Alumno> list = query.list();
         return list != null ? list.get(CommonNaming.POSICION_INICIAL) : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Alumno> findAll() {
+        final Query query = this.sessionFactory.getCurrentSession().createQuery("from Alumno");
+        final List<Alumno> list = query.list();
+        return list;
     }
 
     /**

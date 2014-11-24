@@ -12,6 +12,7 @@
 			
 			<ul>
 				<li><a href="/rampa/socios">Socios</a></li>
+				<li><a href="/rampa/alumnos">Alumnos</a></li>
 				<li><a href="/rampa/actividades">Acividades</a></li>
 			</ul>
 		</section>
