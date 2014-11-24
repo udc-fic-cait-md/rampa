@@ -40,4 +40,11 @@ public interface InscripcionService {
      */
     Inscripcion findById(Long id);
 
+    /**
+     * Find all.
+     *
+     * @return the list
+     */
+	Object findAll();
+
 }

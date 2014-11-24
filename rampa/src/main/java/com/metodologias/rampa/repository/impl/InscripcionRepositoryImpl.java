@@ -77,4 +77,14 @@ public class InscripcionRepositoryImpl implements InscripcionRepository {
         this.sessionFactory = sessionFactory;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Inscripcion> findAll() {
+        final Query query = this.sessionFactory.getCurrentSession().createQuery("from Inscripcion");
+        final List<Inscripcion> list = query.list();
+        return list;
+    }
+
 }

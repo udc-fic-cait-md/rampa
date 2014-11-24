@@ -50,4 +50,9 @@ public class InscripcionServiceImpl implements InscripcionService {
         return this.inscripcionRepository.findById(id);
     }
 
+	@Override
+	public Object findAll() {
+		return this.inscripcionRepository.findAll();
+	}
+
 }
