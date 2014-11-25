@@ -1,5 +1,7 @@
 package com.metodologias.rampa.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +52,12 @@ public class InscripcionServiceImpl implements InscripcionService {
         return this.inscripcionRepository.findById(id);
     }
 
-	@Override
-	public Object findAll() {
-		return this.inscripcionRepository.findAll();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Inscripcion> findAll() {
+        return this.inscripcionRepository.findAll();
+    }
 
 }

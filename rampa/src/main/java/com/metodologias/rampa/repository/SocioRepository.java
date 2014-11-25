@@ -1,5 +1,7 @@
 package com.metodologias.rampa.repository;
 
+import java.util.List;
+
 import com.metodologias.rampa.model.Socio;
 
 /**
@@ -40,4 +42,10 @@ public interface SocioRepository {
      */
     Socio findByNumero(Long numeroSocio);
 
+    /**
+     * Find all.
+     *
+     * @return the list
+     */
+    List<Socio> findAll();
 }

@@ -59,6 +59,16 @@ public class SocioRepositoryImpl implements SocioRepository {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Socio> findAll() {
+        final Query query = this.sessionFactory.getCurrentSession().createQuery("from Socio");
+        final List<Socio> list = query.list();
+        return list;
+    }
+
+    /**
      * Gets the session factory.
      *
      * @return the session factory
@@ -76,4 +86,5 @@ public class SocioRepositoryImpl implements SocioRepository {
     public void setSessionFactory(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
 }

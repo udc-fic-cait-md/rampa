@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.metodologias.rampa.model.Actividad;
 import com.metodologias.rampa.model.Alumno;
 import com.metodologias.rampa.repository.AlumnoRepository;
 import com.metodologias.rampa.service.AlumnoService;
@@ -53,9 +52,12 @@ public class AlumnoServiceImpl implements AlumnoService {
         return this.alumnoRepository.findById(id);
     }
 
-	@Override
-	public List<Alumno> findAll() {
-		return this.alumnoRepository.findAll();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Alumno> findAll() {
+        return this.alumnoRepository.findAll();
+    }
 
 }

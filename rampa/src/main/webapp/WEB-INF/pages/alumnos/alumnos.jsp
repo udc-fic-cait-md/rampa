@@ -20,7 +20,16 @@
 			<h3>Listado de alumnos</h3>
 			<ul>
 				<c:forEach var="alumno" items="${listaAlumnos}">
-					<li><a href="/rampa/alumnos/perfil/${alumno.id}">${alumno.nombre} ${alumno.apellido1} ${alumno.apellido2} </a></li>
+					<b>Id:</b> ${alumno.id} <br/>
+					<b>Nombre y apellidos:</b> ${alumno.nombre} ${alumno.apellido1} ${alumno.apellido2}<br/>
+					<b>Fecha de nacimiento:</b> <fmt:formatDate type="date" pattern="dd/MM/yyyy" value="${alumno.fechaNacimiento}" /> <br/>
+					<b>Curso:</b> ${alumno.curso} <br/>
+					<b>Observaciones:</b> ${alumno.observaciones} <br/>
+					<b>Socio al que está asociado:</b> <br/>
+					<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Número:</i> ${alumno.socio.numero}<br/>
+					<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre y apellidos:</i> ${alumno.socio.nombre} ${alumno.socio.apellido1} ${alumno.socio.apellido2}<br/>
+					<b>----------------------------------------------------------------</b>
+					<br/>
 				</c:forEach>
 			</ul>
 		

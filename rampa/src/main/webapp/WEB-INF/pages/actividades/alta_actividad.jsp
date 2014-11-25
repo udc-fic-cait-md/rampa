@@ -37,12 +37,12 @@
 						</tr>
 						<tr>
 							<td><label>Fecha de Inicio:</label></td>
-							<td><input type="date" name ="fechadeInicio"  /></td>
+							<td><input type="date" name ="fechaInicio"  /></td>
 							<td><f:errors path="fechaInicio" /></td>
 						</tr>
 						<tr>
 							<td><label>Fecha de Fin:</label></td>
-							<td><input type="date" name ="fechadeFin" /></td>
+							<td><input type="date" name ="fechaFin" /></td>
 							<td><f:errors path="fechaFin"  /></td>
 						</tr>
 					    

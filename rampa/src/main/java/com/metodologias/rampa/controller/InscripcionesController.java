@@ -15,12 +15,11 @@ import com.metodologias.rampa.service.InscripcionService;
 @RequestMapping(value = "/inscripciones")
 public class InscripcionesController {
 
-	/** The inscripcion service. */
+    /** The inscripcion service. */
     @Autowired
     private InscripcionService inscripcionService;
-	
-	
-	/**
+
+    /**
      * Cargar listado Inscripciones.
      *
      * @return the model and view
@@ -28,9 +27,9 @@ public class InscripcionesController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView cargarListadoInscripciones() {
 
-        ModelAndView modelo = new ModelAndView("inscripciones/inscripciones");
+        final ModelAndView modelo = new ModelAndView("inscripciones/inscripciones");
         modelo.addObject("listaInscripciones", this.inscripcionService.findAll());
-        
+
         return modelo;
     }
 }

@@ -40,9 +40,10 @@ public class ActividadesController {
     @Autowired
     private MessageSource msgSource;
 
+    /** The actividad validator. */
     @Autowired
-    ActividadValidator actividadValidator;
-    
+    private ActividadValidator actividadValidator;
+
     /**
      * Cargar listado actividades.
      *
@@ -75,6 +76,10 @@ public class ActividadesController {
     /**
      * Alta actividad.
      *
+     * @param request
+     *            the request
+     * @param response
+     *            the response
      * @param nuevaActividad
      *            the nueva actividad
      * @param result
@@ -84,35 +89,34 @@ public class ActividadesController {
      * @return the model and view
      */
     @RequestMapping(value = "/darAltaActividad", method = RequestMethod.POST)
-    public ModelAndView altaActividad(HttpServletRequest request,
-			HttpServletResponse response,@Valid @ModelAttribute("nuevaActividad") final Actividad nuevaActividad,
-            final BindingResult result, final Model model) {
-    	
-    	//Sección de código provisional para el tratamiento de fechas de la actividad
-		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-		Date fecha = null;
-		try {
-			if(request.getParameter("fechadeInicio")!= null && !"".equals(request.getParameter("fechadeInicio"))){
-				fecha = formatoDelTexto.parse(request.getParameter("fechadeInicio"));
-				nuevaActividad.setFechaInicio(fecha);
-				fecha = null;
-			}
-			if(request.getParameter("fechadeFin")!= null && !"".equals(request.getParameter("fechadeFin"))){
-				
-				fecha = formatoDelTexto.parse(request.getParameter("fechadeFin"));
-				nuevaActividad.setFechaFin(fecha);
-			}
-		
-		} catch (ParseException ex) {
-		
-		ex.printStackTrace();
-		
-		}
-		
-		//Validamos la actividad
-		actividadValidator.validate(nuevaActividad, result);
-		
-		
+    public ModelAndView altaActividad(final HttpServletRequest request, final HttpServletResponse response,
+            @Valid @ModelAttribute("nuevaActividad") final Actividad nuevaActividad, final BindingResult result,
+            final Model model) {
+
+        // Seccion de codigo provisional para el tratamiento de fechas de la actividad
+        final SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = null;
+        try {
+            if (request.getParameter("fechadeInicio") != null && !"".equals(request.getParameter("fechadeInicio"))) {
+                fecha = formatoDelTexto.parse(request.getParameter("fechadeInicio"));
+                nuevaActividad.setFechaInicio(fecha);
+                fecha = null;
+            }
+            if (request.getParameter("fechadeFin") != null && !"".equals(request.getParameter("fechadeFin"))) {
+
+                fecha = formatoDelTexto.parse(request.getParameter("fechadeFin"));
+                nuevaActividad.setFechaFin(fecha);
+            }
+
+        } catch (final ParseException ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        // Validamos la actividad
+        this.actividadValidator.validate(nuevaActividad, result);
+
         if (!result.hasErrors()) {
             this.actividadService.save(nuevaActividad);
             model.addAttribute("infoMsg",

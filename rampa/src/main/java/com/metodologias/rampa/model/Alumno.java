@@ -48,7 +48,7 @@ public class Alumno implements Serializable {
     private String observaciones;
 
     /** The socio. */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "SOCIO_ID")
     private Socio socio;
 

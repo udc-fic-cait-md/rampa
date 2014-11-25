@@ -1,5 +1,7 @@
 package com.metodologias.rampa.repository;
 
+import java.util.List;
+
 import com.metodologias.rampa.model.Inscripcion;
 
 /**
@@ -45,6 +47,6 @@ public interface InscripcionRepository {
      *
      * @return the list
      */
-	Object findAll();
-    
+    List<Inscripcion> findAll();
+
 }

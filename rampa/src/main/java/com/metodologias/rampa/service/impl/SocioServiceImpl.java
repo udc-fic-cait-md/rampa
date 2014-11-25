@@ -1,5 +1,7 @@
 package com.metodologias.rampa.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +20,7 @@ public class SocioServiceImpl implements SocioService {
     @Autowired
     private SocioRepository socioRepository;
 
-    
-    public SocioRepository getSocioRepository() {
-		return socioRepository;
-	}
-
-	public void setSocioRepository(SocioRepository socioRepository) {
-		this.socioRepository = socioRepository;
-	}
-
-	/**
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -57,6 +50,33 @@ public class SocioServiceImpl implements SocioService {
     @Override
     public Socio findByNumero(final Long numeroSocio) {
         return this.socioRepository.findByNumero(numeroSocio);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Socio> findAll() {
+        return this.socioRepository.findAll();
+    }
+
+    /**
+     * Gets the socio repository.
+     *
+     * @return the socio repository
+     */
+    public SocioRepository getSocioRepository() {
+        return this.socioRepository;
+    }
+
+    /**
+     * Sets the socio repository.
+     *
+     * @param socioRepository
+     *            the new socio repository
+     */
+    public void setSocioRepository(final SocioRepository socioRepository) {
+        this.socioRepository = socioRepository;
     }
 
 }
