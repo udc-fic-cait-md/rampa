@@ -1,5 +1,6 @@
 package com.metodologias.rampa.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -41,7 +42,9 @@ public class SociosController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView cargarListadoSocios() {
-        final ModelAndView modelo = new ModelAndView("socios/socios");
+    	final ModelAndView modelo = new ModelAndView("socios/socios");
+        List<Socio> listaSocios = socioService.findAll();
+        modelo.addObject("listaSocios", listaSocios);
         return modelo;
     }
 
@@ -66,12 +69,10 @@ public class SociosController {
      *            the id socio
      * @return the model and view
      */
-    @RequestMapping(value = "/perfil/{idSocio}", method = RequestMethod.GET)
-    public ModelAndView cargarPerfilSocio(@PathVariable("idSocio") final Integer idSocio) {
-        final ModelAndView modelo = new ModelAndView("socios/ficha_socio");
-
-        // modelo.addObject("idSocio", idSocio);
-
+    @RequestMapping(value = "/perfil/{numSocio}", method = RequestMethod.GET)
+    public ModelAndView cargarPerfilSocio(@PathVariable("numSocio") final Long numSocio) {
+    	final ModelAndView modelo = new ModelAndView("socios/ficha_socio");
+        modelo.addObject("socio", socioService.findByNumero(numSocio));
         return modelo;
     }
 
