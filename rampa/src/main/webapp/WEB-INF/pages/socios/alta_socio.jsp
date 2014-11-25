@@ -4,7 +4,8 @@
 
 <!DOCTYPE HTML>
 
-<html>
+<html lang="es">
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>RAMPA</title>
@@ -36,12 +37,12 @@
 						<td><f:errors path="apellido2" /></td>
 					</tr>
 					<tr>
-						<td>DirecciÃ³n</td>
+						<td>Dirección</td>
 						<td><f:input path="direccion"/></td>
 						<td><f:errors path="direccion" /></td>
 					</tr>
 					<tr>
-						<td>TelÃ©fono:</td>
+						<td>Teléfono:</td>
 						<td><f:input path="telefono"/></td>
 						<td><f:errors path="telefono" /></td>
 					</tr>
